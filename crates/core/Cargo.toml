@@ -1,0 +1,17 @@
+[package]
+name = "godmanager-core"
+description = "GodManager engine: segmented HTTP downloads and torrents"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+# Bytes as the server sends them: no gzip decoding, ranges must match the file.
+ureq = { version = "3", default-features = false, features = ["rustls"] }
+percent-encoding = "2"
+sha2 = "0.10"
+# BitTorrent: magnet links, .torrent files, DHT, trackers.
+librqbit = { version = "9", default-features = false, features = ["rust-tls"] }
+tokio = { version = "1", features = ["rt-multi-thread"] }
