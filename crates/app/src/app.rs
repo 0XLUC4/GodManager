@@ -724,7 +724,12 @@ fn user_agent() -> String {
 }
 
 impl eframe::App for GodApp {
+    fn save(&mut self, _storage: &mut dyn eframe::Storage) {
+        crate::window::save();
+    }
+
     fn ui(&mut self, ui: &mut Ui, _frame: &mut eframe::Frame) {
+        crate::window::track(ui.ctx());
         let ctx = ui.ctx().clone();
         self.handle_inbox(&ctx);
         self.handle_drops(&ctx);
